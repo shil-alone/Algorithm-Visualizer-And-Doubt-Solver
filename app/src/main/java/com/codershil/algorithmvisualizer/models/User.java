@@ -1,17 +1,24 @@
 package com.codershil.algorithmvisualizer.models;
 
-public class User {
-    String name, email, mobile;
+import com.google.firebase.firestore.ServerTimestamp;
 
-    public User(String name, String email, String mobile) {
+import java.util.Date;
+
+public class User {
+    String name, email, mobile,uid;
+
+    @ServerTimestamp
+    private Date createdAt;
+
+    public User(String name, String email, String mobile,String uid) {
         this.name = name;
         this.email = email;
         this.mobile = mobile;
+        this.uid = uid;
     }
 
     public User() {
     }
-
 
     public String getName() {
         return name;
@@ -35,5 +42,21 @@ public class User {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }
