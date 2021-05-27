@@ -4,6 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back_login_screen"
     tools:context=".activities.PostActivity">
 
+    <EditText
+        android:id="@+id/edtPostContent"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/back_edt"
+        android:ems="10"
+        android:gravity="start"
+        android:hint="enter your doubt here"
+        android:inputType="textMultiLine"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnPost"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/back_btn_signup"
+        android:text="Post"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/edtPostContent"
+        app:layout_constraintStart_toStartOf="@+id/edtPostContent"
+        app:layout_constraintTop_toBottomOf="@+id/edtPostContent" />
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progressBarPost"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="12dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPost"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading"
+        tools:visibility="gone" />
 </androidx.constraintlayout.widget.ConstraintLayout>
