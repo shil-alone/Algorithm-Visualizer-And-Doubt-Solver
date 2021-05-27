@@ -1,6 +1,7 @@
 package com.codershil.algorithmvisualizer.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.codershil.algorithmvisualizer.R;
+import com.codershil.algorithmvisualizer.activities.SortingActivity;
 import com.codershil.algorithmvisualizer.models.Category;
 
 import java.util.ArrayList;
@@ -27,7 +29,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
     @NonNull
     @Override
     public CategoryHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.category_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_category, parent, false);
         return new CategoryHolder(view);
     }
 
@@ -35,6 +37,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
     public void onBindViewHolder(@NonNull CategoryHolder holder, int position) {
         holder.categoryImage.setImageResource(categoryArrayList.get(position).getImageUrl());
         holder.txtCategoryName.setText(categoryArrayList.get(position).getCategoryName());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, SortingActivity.class));
+            }
+        });
     }
 
     @Override
