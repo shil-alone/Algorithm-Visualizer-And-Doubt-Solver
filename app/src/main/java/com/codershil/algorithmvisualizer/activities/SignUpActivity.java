@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.codershil.algorithmvisualizer.R;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 public class SignUpActivity extends AppCompatActivity {
     Button btnSignUp, btnLogin;
     EditText edtName, edtMobile, edtEmail;
-    ProgressBar progressBar;
+    LottieAnimationView progressBar;
     String userName, userMobile, userEmail, verificationId;
     Intent intent;
     FirebaseAuth auth;
@@ -78,7 +79,7 @@ public class SignUpActivity extends AppCompatActivity {
         edtName = findViewById(R.id.edtName);
         edtMobile = findViewById(R.id.edtMobile);
         edtEmail = findViewById(R.id.edtEmail);
-        progressBar = findViewById(R.id.progressBar3);
+        progressBar = (LottieAnimationView) findViewById(R.id.progressBar3);
 
         // changing the color of status bar
         if (Build.VERSION.SDK_INT >= 21) {
@@ -128,7 +129,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 progressBar.setVisibility(View.VISIBLE);
                 btnSignUp.setVisibility(View.GONE);
-                userName = edtName.getText().toString();
+                userName = edtName.getText().toString().trim();
                 userMobile = edtMobile.getText().toString().trim();
                 userEmail = edtEmail.getText().toString().trim();
 
@@ -154,7 +155,7 @@ public class SignUpActivity extends AppCompatActivity {
                 PhoneAuthOptions options =
                         PhoneAuthOptions.newBuilder(auth)
                                 .setPhoneNumber("+91" + userMobile)       // Phone number to verify
-                                .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                                .setTimeout(50L, TimeUnit.SECONDS) // Timeout and unit
                                 .setActivity(SignUpActivity.this)                 // Activity (for callback binding)
                                 .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
                                 .build();
