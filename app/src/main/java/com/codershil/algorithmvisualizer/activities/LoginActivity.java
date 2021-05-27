@@ -6,15 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.codershil.algorithmvisualizer.R;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 public class LoginActivity extends AppCompatActivity {
     Button btnSignUp, btnLogin;
     EditText edtMobileNumber;
-    ProgressBar progressBar;
+    LottieAnimationView progressBar;
     FirebaseAuth auth;
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     String verificationId, mobileNumber;
@@ -70,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
         btnSignUp = findViewById(R.id.btnSign);
         btnLogin = findViewById(R.id.btnLog);
         edtMobileNumber = findViewById(R.id.edtMobileNumber);
-        progressBar = findViewById(R.id.progressBar2);
+        progressBar = (LottieAnimationView) findViewById(R.id.progressBar2);
         auth = FirebaseAuth.getInstance();
 
         // changing the color of status bar
@@ -136,10 +135,11 @@ public class LoginActivity extends AppCompatActivity {
                 PhoneAuthOptions options =
                         PhoneAuthOptions.newBuilder(auth)
                                 .setPhoneNumber("+91" + mobileNumber)       // Phone number to verify
-                                .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                                .setTimeout(50L, TimeUnit.SECONDS) // Timeout and unit
                                 .setActivity(LoginActivity.this)                 // Activity (for callback binding)
                                 .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
                                 .build();
+
                 PhoneAuthProvider.verifyPhoneNumber(options);
 
             }
