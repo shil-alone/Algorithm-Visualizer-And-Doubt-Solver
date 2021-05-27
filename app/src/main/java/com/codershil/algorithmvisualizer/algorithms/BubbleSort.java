@@ -1,16 +1,12 @@
-package com.codershil.algorithmvisualizerdemo.algorithms;
+package com.codershil.algorithmvisualizer.algorithms;
 
 import android.app.Activity;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Message;
-import android.widget.Toast;
 
-import com.codershil.algorithmvisualizerdemo.utilities.DataUtils;
-import com.codershil.algorithmvisualizerdemo.visualilzer.SortingVisualizer;
+import com.codershil.algorithmvisualizer.utilities.DataUtils;
+import com.codershil.algorithmvisualizer.visualizer.SortingVisualizer;
 
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class BubbleSort {
