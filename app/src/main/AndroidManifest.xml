@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.codershil.algorithmvisualizer">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,6 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AlgorithmVisualizer">
+        <activity android:name=".activities.MyPostsActivity"/>
+        <activity android:name=".activities.PostActivity" />
+        <activity android:name=".activities.DoubtActivity" />
+        <activity android:name=".activities.SortingActivity" />
         <activity
             android:name=".activities.OtpActivity"
             android:theme="@style/Theme.Design.NoActionBar" />
@@ -25,7 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.MainActivity" android:launchMode="singleTop"/>
 
         <meta-data
             android:name="preloaded_fonts"
