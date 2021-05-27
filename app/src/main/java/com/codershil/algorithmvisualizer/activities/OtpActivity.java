@@ -18,7 +18,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.codershil.algorithmvisualizer.R;
+import com.codershil.algorithmvisualizer.daos.UserDao;
 import com.codershil.algorithmvisualizer.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -37,7 +39,7 @@ public class OtpActivity extends AppCompatActivity {
     Button btnVerifyOtp;
     EditText edtOtp;
     TextView txtTime, txtResendOtp, textView;
-    ProgressBar progressBar;
+    LottieAnimationView progressBar;
     CountDownTimer timer;
     Intent intent;
     String verificationId, mobileNumber, userName, userEmail;
@@ -90,8 +92,9 @@ public class OtpActivity extends AppCompatActivity {
         txtTime = findViewById(R.id.txtTime);
         textView = findViewById(R.id.textView);
         txtResendOtp = findViewById(R.id.txtResendOtp);
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = (LottieAnimationView) findViewById(R.id.progressBar);
 
+        // initializing firebase objects
         auth = FirebaseAuth.getInstance();
         database = FirebaseFirestore.getInstance();
 
@@ -102,6 +105,8 @@ public class OtpActivity extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.status_bar_login));
         }
+
+        // initializing timer for otp counter
         timer = new CountDownTimer(60000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -132,32 +137,10 @@ public class OtpActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 if (getIntent().getIntExtra("SIGN", 0) == 1) {
-                                    new Thread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            User user = new User(userName, userEmail, mobileNumber);
-                                            database.collection("users")
-                                                    .document(task.getResult().getUser().getUid())
-                                                    .set(user)
-                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                        @Override
-                                                        public void onComplete(@NonNull Task<Void> task) {
-                                                            if (task.isSuccessful()) {
-                                                                runOnUiThread(new Runnable() {
-                                                                    @Override
-                                                                    public void run() {
-                                                                        Toast.makeText(OtpActivity.this, "user added to database", Toast.LENGTH_SHORT).show();
-                                                                    }
-                                                                });
-                                                            }
-                                                        }
-                                                    });
-
-                                        }
-                                    }).start();
+                                    User user = new User(userName, userEmail, mobileNumber, auth.getCurrentUser().getUid());
+                                    UserDao dao = new UserDao(OtpActivity.this);
+                                    dao.addUser(user);
                                 }
-
-
 
                                 progressBar.setVisibility(View.GONE);
                                 Toast.makeText(OtpActivity.this, "otp verified successfully", Toast.LENGTH_SHORT).show();
@@ -180,8 +163,6 @@ public class OtpActivity extends AppCompatActivity {
                 }
             }
         });
-
-
 
         txtResendOtp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,7 +196,7 @@ public class OtpActivity extends AppCompatActivity {
                 PhoneAuthOptions options =
                         PhoneAuthOptions.newBuilder(auth)
                                 .setPhoneNumber("+91" + mobileNumber)
-                                .setTimeout(60L, TimeUnit.SECONDS)
+                                .setTimeout(50L, TimeUnit.SECONDS)
                                 .setActivity(OtpActivity.this)
                                 .setCallbacks(mCallbacks)
                                 .build();
