@@ -1,4 +1,4 @@
-package com.codershil.algorithmvisualizerdemo.utilities;
+package com.codershil.algorithmvisualizer.utilities;
 
 
 import java.util.Random;
