@@ -1,4 +1,4 @@
-package com.codershil.algorithmvisualizerdemo.visualilzer;
+package com.codershil.algorithmvisualizer.visualizer;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.graphics.Paint;
 import android.util.DisplayMetrics;
 import android.view.View;
 
-import com.codershil.algorithmvisualizerdemo.R;
+import com.codershil.algorithmvisualizer.R;
 
 
 public class SortingVisualizer extends View {
@@ -21,6 +21,7 @@ public class SortingVisualizer extends View {
     float strokeWidth;
     float screenWidth,screenHeight,startX, startY , lineGap;
     int col1=-1,col2=-1,colLast=-1;
+    int lineColor;
 
     public SortingVisualizer(Context context){
         super(context);
@@ -29,12 +30,13 @@ public class SortingVisualizer extends View {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setColor(context.getResources().getColor(R.color.purple_500));
+        lineColor = context.getResources().getColor(R.color.status_bar_login);
+        mPaint.setColor(lineColor);
         mPaint.setStrokeWidth(20);
 
         outerPaint = new Paint();
         outerPaint.setStyle(Paint.Style.FILL);
-        outerPaint.setColor(getResources().getColor(R.color.teal_200));
+        outerPaint.setColor(Color.TRANSPARENT);
 
         displayMetrics = new DisplayMetrics();
         ((Activity) getContext()).getWindowManager()
@@ -54,18 +56,17 @@ public class SortingVisualizer extends View {
         screenWidth = displayMetrics.widthPixels;
         screenHeight = displayMetrics.heightPixels;
         startX = 10;
-        startY = 10;
+        startY = 1;
         lineGap = 1;
         screenWidth = screenWidth - (randomArray.length * lineGap);
         mPaint.setStrokeWidth(screenWidth / randomArray.length);
-
 
         for (int i = 0 ;i<randomArray.length;i++){
             if (col1 == i || col2 ==i){
                 mPaint.setColor(Color.RED);
             }
             else {
-                mPaint.setColor(getResources().getColor(R.color.purple_500));
+                mPaint.setColor(lineColor);
             }
             canvas.drawLine(startX, startY, startX, (randomArray[i]) * ( screenHeight / randomArray.length+1), mPaint);
             startX += (screenWidth / randomArray.length) + lineGap;
