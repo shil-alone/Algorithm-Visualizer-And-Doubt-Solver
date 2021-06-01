@@ -43,6 +43,7 @@ public class PostActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBarPost);
         btnPost = findViewById(R.id.btnPost);
         progressBar.setVisibility(View.GONE);
+        getSupportActionBar().setTitle("Post");
         postDao = new PostDao(PostActivity.this);
         auth = FirebaseAuth.getInstance();
         database = FirebaseFirestore.getInstance();
