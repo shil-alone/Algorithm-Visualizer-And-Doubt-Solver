@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:id="@+id/bubbleSort"
+        android:title="Bubble Sort" />
+    <item
+        android:id="@+id/insertionSort"
+        android:title="Insertion Sort" />
+    <item
+        android:id="@+id/selectionSort"
+        android:title="Selection Sort" />
+    <item
+        android:id="@+id/quickSort"
+        android:title="Quick Sort" />
+    <item
+        android:id="@+id/mergeSort"
+        android:title="Merge Sort" />
 </menu>

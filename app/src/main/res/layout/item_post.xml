@@ -25,7 +25,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imgProfile"
+                android:id="@+id/profileImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -35,32 +35,34 @@
                 app:srcCompat="@drawable/ic_baseline_account_circle_24" />
 
             <TextView
-                android:id="@+id/txtName"
+                android:id="@+id/txtUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:fontFamily="@font/belgrano"
                 android:text="User Name"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imgProfile"
-                app:layout_constraintStart_toEndOf="@+id/imgProfile"
-                app:layout_constraintTop_toTopOf="@+id/imgProfile" />
+                app:layout_constraintBottom_toBottomOf="@+id/profileImage"
+                app:layout_constraintStart_toEndOf="@+id/profileImage"
+                app:layout_constraintTop_toTopOf="@+id/profileImage" />
 
             <TextView
-                android:id="@+id/txtPostContent"
+                android:id="@+id/txtComment"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:fontFamily="@font/adamina"
                 android:gravity="center|start"
                 android:padding="10dp"
                 android:text="TextViewTextViewTextVxtTtViewtVietViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextVie"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/imgProfile"
-                app:layout_constraintTop_toBottomOf="@+id/imgProfile" />
+                app:layout_constraintStart_toStartOf="@+id/profileImage"
+                app:layout_constraintTop_toBottomOf="@+id/profileImage" />
 
             <ImageView
                 android:id="@+id/imgLike"
@@ -70,8 +72,8 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/txtPostContent"
-                app:layout_constraintTop_toBottomOf="@+id/txtPostContent"
+                app:layout_constraintStart_toStartOf="@+id/txtComment"
+                app:layout_constraintTop_toBottomOf="@+id/txtComment"
                 app:srcCompat="@drawable/ic_baseline_thumb_up_alt_24" />
 
             <ImageView
@@ -81,9 +83,30 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imgLike"
-                app:layout_constraintTop_toTopOf="@+id/imgLike"
+                app:layout_constraintStart_toEndOf="@+id/txtLikeCount"
                 app:srcCompat="@drawable/ic_baseline_textsms_24" />
+
+            <TextView
+                android:id="@+id/txtLikeCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="0"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/imgLike"
+                app:layout_constraintStart_toEndOf="@+id/imgLike"
+                app:layout_constraintTop_toTopOf="@+id/imgLike" />
+
+            <TextView
+                android:id="@+id/txtCommentCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="0"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/imgComments"
+                app:layout_constraintStart_toEndOf="@+id/imgComments"
+                app:layout_constraintTop_toTopOf="@+id/imgComments" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
