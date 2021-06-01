@@ -13,17 +13,16 @@ import com.codershil.algorithmvisualizer.R;
 
 public class SortingVisualizer extends View {
 
-    Paint mPaint , outerPaint ;
+    Paint mPaint, outerPaint;
     Context context;
     DisplayMetrics displayMetrics;
     Activity activity;
-    private int[] randomArray ;
-    float strokeWidth;
-    float screenWidth,screenHeight,startX, startY , lineGap;
-    int col1=-1,col2=-1,colLast=-1;
+    private int[] randomArray;
+    float screenWidth, screenHeight, startX, startY, lineGap;
+    int col1 = -1, col2 = -1;
     int lineColor;
 
-    public SortingVisualizer(Context context){
+    public SortingVisualizer(Context context) {
         super(context);
         this.context = context;
         activity = (Activity) context;
@@ -45,7 +44,6 @@ public class SortingVisualizer extends View {
         // getting the screenWidth and screenHeight using the displayMetrics class
         screenWidth = displayMetrics.widthPixels;
         screenHeight = displayMetrics.heightPixels;
-
     }
 
 
@@ -61,14 +59,13 @@ public class SortingVisualizer extends View {
         screenWidth = screenWidth - (randomArray.length * lineGap);
         mPaint.setStrokeWidth(screenWidth / randomArray.length);
 
-        for (int i = 0 ;i<randomArray.length;i++){
-            if (col1 == i || col2 ==i){
+        for (int i = 0; i < randomArray.length; i++) {
+            if (col1 == i || col2 == i) {
                 mPaint.setColor(Color.RED);
-            }
-            else {
+            } else {
                 mPaint.setColor(lineColor);
             }
-            canvas.drawLine(startX, startY, startX, (randomArray[i]) * ( screenHeight / randomArray.length+1), mPaint);
+            canvas.drawLine(startX, startY, startX, (randomArray[i]) * (screenHeight / randomArray.length + 1), mPaint);
             startX += (screenWidth / randomArray.length) + lineGap;
         }
         col1 = -1;
@@ -76,7 +73,7 @@ public class SortingVisualizer extends View {
     }
 
 
-    public void colSwap(int col1,int col2){
+    public void colSwap(int col1, int col2) {
         this.col1 = col1;
         this.col2 = col2;
         activity.runOnUiThread(new Runnable() {
@@ -87,9 +84,10 @@ public class SortingVisualizer extends View {
         });
 
     }
-    public void colComp(int col1,int col2){
-         this.col1 = col1;
-         this.col2 = col2;
+
+    public void colIndex(int high1, int high2) {
+        this.col1 = high1;
+        this.col2 = high2;
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -98,11 +96,11 @@ public class SortingVisualizer extends View {
         });
     }
 
-    public void setRandomArray(int[] randomArray){
+    public void setRandomArray(int[] randomArray) {
         this.randomArray = randomArray;
     }
 
-    public int getArrayCount(){
+    public int getArrayCount() {
         return randomArray.length;
     }
 
