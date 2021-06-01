@@ -15,8 +15,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.codershil.algorithmvisualizer.R;
+import com.codershil.algorithmvisualizer.adapters.CommentAdapter;
 import com.codershil.algorithmvisualizer.adapters.PostAdapter;
 import com.codershil.algorithmvisualizer.daos.PostDao;
+import com.codershil.algorithmvisualizer.models.Comment;
 import com.codershil.algorithmvisualizer.models.Post;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -61,14 +63,14 @@ public class DoubtActivity extends AppCompatActivity implements PostAdapter.OnIt
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.post_menu,menu);
+        getMenuInflater().inflate(R.menu.post_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.myPosts){
-            startActivity(new Intent(DoubtActivity.this,MyPostsActivity.class));
+        if (item.getItemId() == R.id.myPosts) {
+            startActivity(new Intent(DoubtActivity.this, MyPostsActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
@@ -77,6 +79,7 @@ public class DoubtActivity extends AppCompatActivity implements PostAdapter.OnIt
         postRV = findViewById(R.id.postRV);
         floatingActionButton = findViewById(R.id.btnFloat);
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        getSupportActionBar().setTitle("Doubt Solver");
     }
 
     private void setUpRecyclerView() {
@@ -108,9 +111,19 @@ public class DoubtActivity extends AppCompatActivity implements PostAdapter.OnIt
         });
     }
 
+
     @Override
-    public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+    public void onLikeClick(DocumentSnapshot documentSnapshot, int position) {
+        PostDao postDao = new PostDao(DoubtActivity.this);
         Post post = documentSnapshot.toObject(Post.class);
-        Toast.makeText(this, post.getUserName(), Toast.LENGTH_SHORT).show();
+        postDao.likePost(post);
+    }
+
+    @Override
+    public void onCommentClick(DocumentSnapshot documentSnapshot, int position) {
+        Post post = documentSnapshot.toObject(Post.class);
+        Intent intent = new Intent(DoubtActivity.this, CommentActivity.class);
+        intent.putExtra("POST", post.getDocumentId());
+        startActivity(intent);
     }
 }
