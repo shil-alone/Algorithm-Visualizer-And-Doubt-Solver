@@ -7,11 +7,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.codershil.algorithmvisualizer.R;
 import com.codershil.algorithmvisualizer.adapters.PostAdapter;
+import com.codershil.algorithmvisualizer.daos.PostDao;
 import com.codershil.algorithmvisualizer.models.Post;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -51,6 +53,7 @@ public class MyPostsActivity extends AppCompatActivity implements PostAdapter.On
     private void initialize() {
         postRV = findViewById(R.id.myPostsRV);
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout1);
+        getSupportActionBar().setTitle("My Posts");
     }
 
     private void setUpRecyclerView() {
@@ -62,7 +65,6 @@ public class MyPostsActivity extends AppCompatActivity implements PostAdapter.On
         postRV.setHasFixedSize(true);
         postRV.setLayoutManager(new LinearLayoutManager(MyPostsActivity.this));
         postRV.setAdapter(adapter);
-
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -73,6 +75,7 @@ public class MyPostsActivity extends AppCompatActivity implements PostAdapter.On
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 adapter.deletePost(viewHolder.getAdapterPosition());
+                Toast.makeText(MyPostsActivity.this, "post deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(postRV);
 
@@ -90,9 +93,19 @@ public class MyPostsActivity extends AppCompatActivity implements PostAdapter.On
         });
     }
 
+
     @Override
-    public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+    public void onLikeClick(DocumentSnapshot documentSnapshot, int position) {
+        PostDao postDao = new PostDao(MyPostsActivity.this);
         Post post = documentSnapshot.toObject(Post.class);
-        Toast.makeText(this, post.getUserName(), Toast.LENGTH_SHORT).show();
+        postDao.likePost(post);
+    }
+
+    @Override
+    public void onCommentClick(DocumentSnapshot documentSnapshot, int position) {
+        Post post = documentSnapshot.toObject(Post.class);
+        Intent intent = new Intent(MyPostsActivity.this, CommentActivity.class);
+        intent.putExtra("POST", post.getDocumentId());
+        startActivity(intent);
     }
 }
