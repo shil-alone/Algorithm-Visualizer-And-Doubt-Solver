@@ -2,20 +2,24 @@ package com.codershil.algorithmvisualizer.models;
 
 import com.google.firebase.firestore.ServerTimestamp;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Post {
-    String userName,postContent,userUid;
+    String userName, postContent, userUid, documentId;
+    ArrayList<String> likedBy = new ArrayList<>();
+    ArrayList<String> commentedBy = new ArrayList<>();
 
     @ServerTimestamp
     private Date createdAt;
 
-    public Post(String userName, String postContent,String userUid) {
+    public Post(String userName, String postContent, String userUid) {
         this.userName = userName;
         this.postContent = postContent;
         this.userUid = userUid;
     }
-    public Post(){
+
+    public Post() {
 
     }
 
@@ -49,5 +53,29 @@ public class Post {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
+    }
+
+    public ArrayList<String> getLikedBy() {
+        return likedBy;
+    }
+
+    public void setLikedBy(ArrayList<String> likedBy) {
+        this.likedBy = likedBy;
+    }
+
+    public ArrayList<String> getCommentedBy() {
+        return commentedBy;
+    }
+
+    public void setCommentedBy(ArrayList<String> commentedBy) {
+        this.commentedBy = commentedBy;
     }
 }
