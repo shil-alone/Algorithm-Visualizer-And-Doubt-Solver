@@ -20,6 +20,8 @@ public class SortingVisualizer extends View {
     private int[] randomArray;
     float screenWidth, screenHeight, startX, startY, lineGap;
     int col1 = -1, col2 = -1;
+    int comp1 = -1, comp2 = -1;
+    int index = -1;
     int lineColor;
 
     public SortingVisualizer(Context context) {
@@ -53,23 +55,30 @@ public class SortingVisualizer extends View {
         canvas.drawPaint(outerPaint);
         screenWidth = displayMetrics.widthPixels;
         screenHeight = displayMetrics.heightPixels;
-        startX = 10;
+        startX = 1;
         startY = 1;
         lineGap = 1;
         screenWidth = screenWidth - (randomArray.length * lineGap);
         mPaint.setStrokeWidth(screenWidth / randomArray.length);
 
         for (int i = 0; i < randomArray.length; i++) {
-            if (col1 == i || col2 == i) {
+            if (comp1 == i || comp2 == i) {
                 mPaint.setColor(Color.RED);
+            } else if (col1 == i || col2 == i) {
+                mPaint.setColor(Color.GREEN);
+            } else if (index == i) {
+                mPaint.setColor(Color.YELLOW);
             } else {
                 mPaint.setColor(lineColor);
             }
-            canvas.drawLine(startX, startY, startX, (randomArray[i]) * (screenHeight / randomArray.length + 1), mPaint);
+            canvas.drawLine(startX, startY, startX, (randomArray[i]) * (screenHeight / randomArray.length), mPaint);
             startX += (screenWidth / randomArray.length) + lineGap;
         }
         col1 = -1;
         col2 = -1;
+        index = -1;
+        comp1 = -1;
+        comp2 = -1;
     }
 
 
@@ -82,12 +91,21 @@ public class SortingVisualizer extends View {
                 invalidate();
             }
         });
-
     }
 
-    public void colIndex(int high1, int high2) {
-        this.col1 = high1;
-        this.col2 = high2;
+    public void colComp(int comp1, int comp2) {
+        this.comp1 = comp1;
+        this.comp2 = comp2;
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                invalidate();
+            }
+        });
+    }
+
+    public void colIndex(int index) {
+        this.index = index;
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
