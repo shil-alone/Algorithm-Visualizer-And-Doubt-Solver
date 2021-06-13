@@ -19,11 +19,20 @@ public class SortingAlgorithm {
             }
         });
     }
-    public void colIndex(int high1,int high2){
+    public void colIndex(int index){
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                visualizer.colIndex(high1,high2);
+                visualizer.colIndex(index);
+            }
+        });
+    }
+
+    public void colComp(int comp1,int comp2){
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                visualizer.colComp(comp1,comp2);
             }
         });
     }
@@ -38,6 +47,24 @@ public class SortingAlgorithm {
 
     public void setSorting(boolean sorting) {
         isSorting = sorting;
+    }
+
+    public boolean isSorting(){
+        return isSorting;
+    }
+
+    public void swapIndex(int[] randomArray,int ind1,int ind2){
+        int temp = randomArray[ind1];
+        randomArray[ind1] = randomArray[ind2];
+        randomArray[ind2] = temp;
+    }
+
+    public void delay(int time){
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException exception) {
+            exception.printStackTrace();
+        }
     }
 
 }
