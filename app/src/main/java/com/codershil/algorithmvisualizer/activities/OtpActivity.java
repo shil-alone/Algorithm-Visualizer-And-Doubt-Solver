@@ -94,6 +94,7 @@ public class OtpActivity extends AppCompatActivity {
         txtResendOtp = findViewById(R.id.txtResendOtp);
         progressBar = (LottieAnimationView) findViewById(R.id.progressBar);
 
+
         // initializing firebase objects
         auth = FirebaseAuth.getInstance();
         database = FirebaseFirestore.getInstance();
