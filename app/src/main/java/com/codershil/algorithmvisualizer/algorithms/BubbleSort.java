@@ -28,25 +28,22 @@ public class BubbleSort extends SortingAlgorithm {
             @Override
             public void run() {
                 for (i = 0; i < randomArray.length; i++) {
-                    for (j = 0; j < randomArray.length - 1; j++) {
+                    for (j = 0; j < randomArray.length -i- 1; j++) {
                         if (!isSorting) {
                             time = getTime();
+                            colComp(j,j+1);
+                            delay(time);
                             if (randomArray[j] > randomArray[j + 1]) {
                                 high1 = j;
                                 high2 = j + 1;
+                                swapIndex(randomArray,j,j+1);
                                 colSwap(high1, high2);
-                                int temp = randomArray[j];
-                                randomArray[j] = randomArray[j + 1];
-                                randomArray[j + 1] = temp;
-                                try {
-                                    Thread.sleep(time);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
+                                delay(time);
                             }
                         }
                     }
                 }
+                colComp(-1, -1);
                 colSwap(-1, -1);
             }
         }).start();
