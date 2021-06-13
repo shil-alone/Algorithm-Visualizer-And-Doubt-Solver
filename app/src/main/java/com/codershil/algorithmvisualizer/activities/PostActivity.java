@@ -3,8 +3,13 @@ package com.codershil.algorithmvisualizer.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -44,6 +49,15 @@ public class PostActivity extends AppCompatActivity {
         btnPost = findViewById(R.id.btnPost);
         progressBar.setVisibility(View.GONE);
         getSupportActionBar().setTitle("Post");
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#3F51B5"));
+        getSupportActionBar().setBackgroundDrawable(colorDrawable);
+        // changing the color of status bar
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.status_bar_login));
+        }
         postDao = new PostDao(PostActivity.this);
         auth = FirebaseAuth.getInstance();
         database = FirebaseFirestore.getInstance();
