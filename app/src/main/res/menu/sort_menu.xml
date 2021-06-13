@@ -5,11 +5,11 @@
         android:id="@+id/bubbleSort"
         android:title="Bubble Sort" />
     <item
-        android:id="@+id/insertionSort"
-        android:title="Insertion Sort" />
-    <item
         android:id="@+id/selectionSort"
         android:title="Selection Sort" />
+    <item
+        android:id="@+id/insertionSort"
+        android:title="Insertion Sort" />
     <item
         android:id="@+id/quickSort"
         android:title="Quick Sort" />

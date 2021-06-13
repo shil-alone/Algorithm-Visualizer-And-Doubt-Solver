@@ -10,5 +10,6 @@
 
     <color name="status_bar_login">#4559C5</color>
     <color name="forget_password">#AB47BC</color>
+    <color name="action_bar">#3B53D5</color>
 
 </resources>

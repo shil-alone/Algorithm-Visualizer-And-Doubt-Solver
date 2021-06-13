@@ -37,8 +37,8 @@
         android:background="@drawable/back_edt_comment"
         android:paddingTop="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/swipeRefreshLayout"
-        app:layout_constraintStart_toStartOf="@+id/swipeRefreshLayout" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/edtComment"

@@ -7,21 +7,6 @@
     android:background="@drawable/back_login_screen"
     tools:context=".activities.MainActivity">
 
-    <TextView
-        android:id="@+id/txtAppTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/belgrano"
-        android:gravity="center"
-        android:text="Algorithm Visualizer"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
@@ -34,7 +19,7 @@
         app:cardElevation="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtAppTitle">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -51,8 +36,7 @@
                 android:scaleType="centerCrop"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
-                app:lottie_rawRes="@raw/doubt"
-                />
+                app:lottie_rawRes="@raw/doubt" />
 
             <TextView
                 android:id="@+id/textView7"
