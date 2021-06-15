@@ -55,7 +55,7 @@ public class SortingVisualizer extends View {
         canvas.drawPaint(outerPaint);
         screenWidth = displayMetrics.widthPixels;
         screenHeight = displayMetrics.heightPixels;
-        startX = 1;
+        startX = 7;
         startY = 1;
         lineGap = 1;
         screenWidth = screenWidth - (randomArray.length * lineGap);
@@ -71,7 +71,7 @@ public class SortingVisualizer extends View {
             } else {
                 mPaint.setColor(lineColor);
             }
-            canvas.drawLine(startX, startY, startX, (randomArray[i]) * (screenHeight / randomArray.length), mPaint);
+            canvas.drawLine(startX, startY, startX, (randomArray[i]) * (screenHeight / randomArray.length) -10, mPaint);
             startX += (screenWidth / randomArray.length) + lineGap;
         }
         col1 = -1;
@@ -121,5 +121,6 @@ public class SortingVisualizer extends View {
     public int getArrayCount() {
         return randomArray.length;
     }
+
 
 }
