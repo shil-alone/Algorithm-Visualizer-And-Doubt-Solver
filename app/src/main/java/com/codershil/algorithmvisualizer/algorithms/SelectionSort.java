@@ -29,7 +29,6 @@ public class SelectionSort extends SortingAlgorithm {
                     int min = i;
                     for (j = i + 1; j < randomArray.length; j++) {
                         if (!isSorting) {
-                            time = getTime();
                             colComp(min,j);
                             delay(time);
                             if (randomArray[j] < randomArray[min]) {
