@@ -32,7 +32,6 @@ public class QuickSort extends SortingAlgorithm {
         int i = low - 1;
         for (int j = low; j < high; j++) {
             if (!isSorting) {
-                time = getTime();
                 colComp(j, -1);
                 colSwap(high, -1);
                 delay(time);
