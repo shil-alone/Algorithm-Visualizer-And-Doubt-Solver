@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.codershil.algorithmvisualizer.R;
+import com.codershil.algorithmvisualizer.activities.SearchingActivity;
 import com.codershil.algorithmvisualizer.activities.SortingActivity;
 import com.codershil.algorithmvisualizer.models.Category;
 
@@ -37,10 +38,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
     public void onBindViewHolder(@NonNull CategoryHolder holder, int position) {
         holder.categoryImage.setImageResource(categoryArrayList.get(position).getImageUrl());
         holder.txtCategoryName.setText(categoryArrayList.get(position).getCategoryName());
+
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, SortingActivity.class));
+                if (holder.txtCategoryName.getText().equals("Searching")) {
+                    context.startActivity(new Intent(context, SearchingActivity.class));
+                } else if (holder.txtCategoryName.getText().equals("Sorting")) {
+                    context.startActivity(new Intent(context, SortingActivity.class));
+                }
             }
         });
     }
