@@ -28,10 +28,8 @@ import com.codershil.algorithmvisualizer.visualizer.SortingVisualizer;
 public class SortingActivity extends AppCompatActivity {
 
     FrameLayout frameLayout;
-    Button btnShuffle;
-    Button btnSort;
-    SeekBar seekBar;
-    SeekBar seekBarTime;
+    Button btnShuffle,btnSort;
+    SeekBar seekBar,seekBarTime;
     int sizeOfArray = 40;
     BubbleSort bubbleSort;
     SelectionSort selectionSort;
