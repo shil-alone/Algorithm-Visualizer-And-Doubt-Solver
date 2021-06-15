@@ -30,7 +30,6 @@ public class BubbleSort extends SortingAlgorithm {
                 for (i = 0; i < randomArray.length; i++) {
                     for (j = 0; j < randomArray.length -i- 1; j++) {
                         if (!isSorting) {
-                            time = getTime();
                             colComp(j,j+1);
                             delay(time);
                             if (randomArray[j] > randomArray[j + 1]) {

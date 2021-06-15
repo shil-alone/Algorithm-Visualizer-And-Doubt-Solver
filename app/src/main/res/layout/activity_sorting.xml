@@ -23,8 +23,9 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="1dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/seekBarTime"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -45,7 +46,7 @@
 
 
     <SeekBar
-        android:id="@+id/seekBar"
+        android:id="@+id/seekBarTime"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -54,7 +55,7 @@
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/btnShuffle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/seekBarTime" />
+        app:layout_constraintStart_toStartOf="@+id/seekBar" />
 
     <TextView
         android:id="@+id/textView"
@@ -72,7 +73,7 @@
 
 
     <SeekBar
-        android:id="@+id/seekBarTime"
+        android:id="@+id/seekBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -80,7 +81,7 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/back_seek"
         android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/seekBar"
+        app:layout_constraintBottom_toTopOf="@+id/seekBarTime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtTime" />
 

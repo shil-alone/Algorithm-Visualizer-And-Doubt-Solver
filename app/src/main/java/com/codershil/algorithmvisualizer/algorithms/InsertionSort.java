@@ -18,7 +18,6 @@ public class InsertionSort extends SortingAlgorithm {
         randomArray = DataUtils.generateRandomArray(sizeOfArray);
         visualizer.setRandomArray(randomArray);
     }
-
     public void sort() {
         i = 0;
         j = 0;
@@ -34,7 +33,6 @@ public class InsertionSort extends SortingAlgorithm {
                             colSwap(i,-1);
                             colComp(j,-1);
                             delay(time);
-                            time = getTime();
                             randomArray[j + 1] = randomArray[j];
                             colComp(j,j+1);
                             delay(time);

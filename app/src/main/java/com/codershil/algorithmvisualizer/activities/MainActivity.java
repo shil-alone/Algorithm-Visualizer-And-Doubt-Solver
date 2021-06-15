@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView categoryRV;
     CardView cardView;
     ArrayList<Category> categoryArrayList = new ArrayList<>();
-    Boolean authFlag = false ;
+    Boolean authFlag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +45,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home_menu,menu);
+        getMenuInflater().inflate(R.menu.home_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.logout){
+        if (item.getItemId() == R.id.logout) {
 
-            View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.logout_dialog,null);
+            View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.logout_dialog, null);
             Button btnCancel = view.findViewById(R.id.btnCancel);
             Button btnLogout = view.findViewById(R.id.btnLogout);
 
@@ -70,13 +70,13 @@ public class MainActivity extends AppCompatActivity {
                     dialog.setMessage("signing out...");
                     dialog.setCancelable(false);
                     dialog.show();
-                    FirebaseAuth auth ;
+                    FirebaseAuth auth;
                     FirebaseAuth.AuthStateListener authStateListener = new FirebaseAuth.AuthStateListener() {
                         @Override
                         public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                            if (firebaseAuth.getCurrentUser() == null){
+                            if (firebaseAuth.getCurrentUser() == null) {
                                 if (!authFlag) {
-                                    authFlag = true ;
+                                    authFlag = true;
                                     dialog.dismiss();
                                     Toast.makeText(MainActivity.this, "logged out successfully", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void initialize(){
+    public void initialize() {
         categoryRV = findViewById(R.id.categoryRV);
         cardView = findViewById(R.id.cardView);
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#3F51B5"));
@@ -116,23 +116,27 @@ public class MainActivity extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.status_bar_login));
         }
-        categoryArrayList.add(new Category(R.drawable.searching, "Searching"));
-        categoryArrayList.add(new Category(R.drawable.searching, "Searching"));
-        categoryArrayList.add(new Category(R.drawable.searching, "Searching"));
+
+        categoryArrayList.add(new Category(R.drawable.sorting, "Sorting"));
         categoryArrayList.add(new Category(R.drawable.searching, "Searching"));
         categoryArrayList.add(new Category(R.drawable.sorting, "Sorting"));
+        categoryArrayList.add(new Category(R.drawable.searching, "Searching"));
         categoryArrayList.add(new Category(R.drawable.sorting, "Sorting"));
+        categoryArrayList.add(new Category(R.drawable.searching, "Searching"));
         categoryArrayList.add(new Category(R.drawable.sorting, "Sorting"));
+        categoryArrayList.add(new Category(R.drawable.searching, "Searching"));
         categoryArrayList.add(new Category(R.drawable.sorting, "Sorting"));
+        categoryArrayList.add(new Category(R.drawable.searching, "Searching"));
+
         categoryRV.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
         categoryRV.setAdapter(new CategoryAdapter(MainActivity.this, categoryArrayList));
     }
 
-    public void setOnClicks(){
+    public void setOnClicks() {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,DoubtActivity.class));
+                startActivity(new Intent(MainActivity.this, DoubtActivity.class));
             }
         });
     }
