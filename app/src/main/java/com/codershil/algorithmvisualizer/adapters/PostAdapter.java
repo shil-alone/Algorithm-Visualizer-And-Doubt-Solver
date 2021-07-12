@@ -46,8 +46,10 @@ public class PostAdapter extends FirestoreRecyclerAdapter<Post, PostAdapter.Post
     }
 
 
-    public void deletePost(int position) {
+    public Post deletePost(int position) {
         getSnapshots().getSnapshot(position).getReference().delete();
+        DocumentSnapshot documentSnapshot = getSnapshots().getSnapshot(position);
+        return documentSnapshot.toObject(Post.class);
     }
 
     public interface OnItemClickListener {
