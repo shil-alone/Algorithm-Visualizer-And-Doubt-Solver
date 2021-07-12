@@ -127,6 +127,7 @@ public class CommentActivity extends AppCompatActivity {
                                         Comment commentObj = new Comment(user.getName(), comment, user.getUid(), postId);
                                         PostDao postDao = new PostDao(CommentActivity.this);
                                         postDao.addComment(commentObj);
+                                        edtComment.setText("");
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
