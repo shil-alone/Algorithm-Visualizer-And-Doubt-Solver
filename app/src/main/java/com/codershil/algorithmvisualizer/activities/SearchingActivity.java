@@ -16,10 +16,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.SeekBar;
 
-import com.airbnb.lottie.L;
 import com.codershil.algorithmvisualizer.R;
 import com.codershil.algorithmvisualizer.algorithms.BinarySearch;
-import com.codershil.algorithmvisualizer.algorithms.BubbleSort;
 import com.codershil.algorithmvisualizer.algorithms.LinearSearch;
 import com.codershil.algorithmvisualizer.utilities.DataUtils;
 import com.codershil.algorithmvisualizer.visualizer.SortingVisualizer;
@@ -50,6 +48,7 @@ public class SearchingActivity extends AppCompatActivity {
         seekBarTime = findViewById(R.id.seekBarT);
         seekBarIndex = findViewById(R.id.seekBarIndex);
         sortingVisualizer = new SortingVisualizer(SearchingActivity.this);
+        binarySearch = new BinarySearch(sortingVisualizer, sizeOfArray, SearchingActivity.this);
         linearSearch = new LinearSearch(sortingVisualizer, sizeOfArray, SearchingActivity.this);
 
         getSupportActionBar().setTitle("Searching Visualizer");
@@ -64,7 +63,6 @@ public class SearchingActivity extends AppCompatActivity {
         }
 
         frameLayout.addView(sortingVisualizer);
-
         seekBarSize.setMax(200);
         seekBarIndex.setMax(sizeOfArray);
         seekBarSize.setProgress(this.sizeOfArray);
@@ -75,7 +73,6 @@ public class SearchingActivity extends AppCompatActivity {
 
 
     private void setClicks() {
-
         btnRandom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,7 +109,6 @@ public class SearchingActivity extends AppCompatActivity {
                         linearSearch.search();
                         break;
 
-
                     case "BINARY":
                         binarySearch.setSorting(false);
                         binarySearch.search();
@@ -132,7 +128,7 @@ public class SearchingActivity extends AppCompatActivity {
                         seekBarIndex.setMax(progress);
                         linearSearch.setSorting(true);
                         linearSearch = new LinearSearch(sortingVisualizer, sizeOfArray, SearchingActivity.this);
-                        sortingVisualizer.colComp(-1,-1);
+                        sortingVisualizer.colComp(-1, -1);
 
                         break;
 
@@ -140,7 +136,7 @@ public class SearchingActivity extends AppCompatActivity {
                         seekBarIndex.setMax(progress);
                         binarySearch.setSorting(true);
                         binarySearch = new BinarySearch(sortingVisualizer, sizeOfArray, SearchingActivity.this);
-                        sortingVisualizer.colComp(-1,-1);
+                        sortingVisualizer.colComp(-1, -1);
                         break;
                 }
             }
@@ -217,6 +213,7 @@ public class SearchingActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.linearSearch:
                 linearSearch = new LinearSearch(sortingVisualizer, sizeOfArray, SearchingActivity.this);
+                binarySearch.setSorting(true);
                 sortingVisualizer.invalidate();
                 btnSearch.setText("Linear Search");
                 algorithmName = "LINEAR";
