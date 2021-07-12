@@ -11,15 +11,16 @@ public class SortingAlgorithm {
     int[] randomArray;
     int time = 100;
 
-    public void colSwap(int col1,int col2){
+    public void colSwap(int col1, int col2) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                visualizer.colSwap(col1,col2);
+                visualizer.colSwap(col1, col2);
             }
         });
     }
-    public void colIndex(int index){
+
+    public void colIndex(int index) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -28,20 +29,20 @@ public class SortingAlgorithm {
         });
     }
 
-    public void colComp(int comp1,int comp2){
+    public void colComp(int comp1, int comp2) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                visualizer.colComp(comp1,comp2);
+                visualizer.colComp(comp1, comp2);
             }
         });
     }
 
-    public void setTime(int time){
+    public void setTime(int time) {
         this.time = time;
     }
 
-    public int getTime(){
+    public int getTime() {
         return time;
     }
 
@@ -49,17 +50,17 @@ public class SortingAlgorithm {
         isSorting = sorting;
     }
 
-    public boolean isSorting(){
+    public boolean isSorting() {
         return isSorting;
     }
 
-    public void swapIndex(int[] randomArray,int ind1,int ind2){
+    public void swapIndex(int[] randomArray, int ind1, int ind2) {
         int temp = randomArray[ind1];
         randomArray[ind1] = randomArray[ind2];
         randomArray[ind2] = temp;
     }
 
-    public void delay(int time){
+    public void delay(int time) {
         try {
             Thread.sleep(time);
         } catch (InterruptedException exception) {
