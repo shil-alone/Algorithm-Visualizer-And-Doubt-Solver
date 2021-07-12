@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ import com.codershil.algorithmvisualizer.adapters.PostAdapter;
 import com.codershil.algorithmvisualizer.daos.PostDao;
 import com.codershil.algorithmvisualizer.models.Post;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -88,8 +90,19 @@ public class MyPostsActivity extends AppCompatActivity implements PostAdapter.On
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                adapter.deletePost(viewHolder.getAdapterPosition());
+                Post post = adapter.deletePost(viewHolder.getAdapterPosition());
                 Toast.makeText(MyPostsActivity.this, "post deleted", Toast.LENGTH_SHORT).show();
+
+                Snackbar.make(postRV, "Post is\"Removed\"", Snackbar.LENGTH_LONG)
+                        .setAction("Undo", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                PostDao postDao = new PostDao(MyPostsActivity.this);
+                                postDao.addPost(post);
+                            }
+                        }).show();
+
+
             }
         }).attachToRecyclerView(postRV);
 
