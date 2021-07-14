@@ -90,19 +90,8 @@ public class MyPostsActivity extends AppCompatActivity implements PostAdapter.On
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                Post post = adapter.deletePost(viewHolder.getAdapterPosition());
+                adapter.deletePost(viewHolder.getAdapterPosition());
                 Toast.makeText(MyPostsActivity.this, "post deleted", Toast.LENGTH_SHORT).show();
-
-                Snackbar.make(postRV, "Post is\"Removed\"", Snackbar.LENGTH_LONG)
-                        .setAction("Undo", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                PostDao postDao = new PostDao(MyPostsActivity.this);
-                                postDao.addPost(post);
-                            }
-                        }).show();
-
-
             }
         }).attachToRecyclerView(postRV);
 
