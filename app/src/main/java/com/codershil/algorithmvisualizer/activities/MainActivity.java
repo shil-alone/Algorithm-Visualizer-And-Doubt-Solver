@@ -20,6 +20,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codershil.algorithmvisualizer.R;
@@ -32,8 +34,11 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     RecyclerView categoryRV;
     CardView cardView;
+    LinearLayout linearAbout;
     ArrayList<Category> categoryArrayList = new ArrayList<>();
     Boolean authFlag = false;
+    TextView txtBtnAbout;
+    boolean isAbout = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
     public void initialize() {
         categoryRV = findViewById(R.id.categoryRV);
         cardView = findViewById(R.id.cardView);
+        txtBtnAbout = findViewById(R.id.txtBtnAbout);
+        linearAbout = findViewById(R.id.linearAbout);
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#3F51B5"));
         getSupportActionBar().setBackgroundDrawable(colorDrawable);
         // changing the color of status bar
@@ -133,6 +140,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setOnClicks() {
+        txtBtnAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isAbout){
+                    linearAbout.setVisibility(View.VISIBLE);
+                    isAbout = true;
+                }
+                else {
+                    linearAbout.setVisibility(View.GONE);
+                    isAbout = false;
+                }
+            }
+        });
+
+
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
