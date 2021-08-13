@@ -7,7 +7,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.codershil.algorithmvisualizer.activities.CommentActivity;
 import com.codershil.algorithmvisualizer.activities.DoubtActivity;
+import com.codershil.algorithmvisualizer.activities.MyPostsActivity;
 import com.codershil.algorithmvisualizer.adapters.CommentAdapter;
 import com.codershil.algorithmvisualizer.models.Comment;
 import com.codershil.algorithmvisualizer.models.Post;
@@ -153,19 +155,77 @@ public class PostDao {
     }
 
     public void deleteComment(Comment comment) {
-        database.collection("posts")
-                .document(comment.getPostId())
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        Post post = documentSnapshot.toObject(Post.class);
-                        post.getCommentedBy().remove(auth.getCurrentUser().getUid());
-                        database.collection("posts")
-                                .document(post.getDocumentId())
-                                .update("commentedBy", post.getCommentedBy());
-                    }
-                });
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                database.collection("posts")
+                        .document(comment.getPostId())
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                Post post = documentSnapshot.toObject(Post.class);
+                                post.getCommentedBy().remove(auth.getCurrentUser().getUid());
+                                database.collection("posts")
+                                        .document(post.getDocumentId())
+                                        .update("commentedBy", post.getCommentedBy());
+                                activity.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(activity, "comment deleted", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                activity.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(activity, "unable to delete comment", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        });
+            }
+        }).start();
+
+
+    }
+
+    public void editPost(Post post,String updatedPostContent){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                database.collection("posts")
+                        .document(post.getDocumentId())
+                        .update("postContent",updatedPostContent)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                activity.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(activity, "post edited successfully", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                activity.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(activity, "unable to edit post", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        });
+            }
+        }).start();
     }
 
 

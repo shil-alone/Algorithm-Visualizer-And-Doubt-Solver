@@ -126,14 +126,8 @@ public class MainActivity extends AppCompatActivity {
 
         categoryArrayList.add(new Category(R.drawable.sorting, "Sorting"));
         categoryArrayList.add(new Category(R.drawable.searching, "Searching"));
-        categoryArrayList.add(new Category(R.drawable.sorting, "Sorting"));
-        categoryArrayList.add(new Category(R.drawable.searching, "Searching"));
-        categoryArrayList.add(new Category(R.drawable.sorting, "Sorting"));
-        categoryArrayList.add(new Category(R.drawable.searching, "Searching"));
-        categoryArrayList.add(new Category(R.drawable.sorting, "Sorting"));
-        categoryArrayList.add(new Category(R.drawable.searching, "Searching"));
-        categoryArrayList.add(new Category(R.drawable.sorting, "Sorting"));
-        categoryArrayList.add(new Category(R.drawable.searching, "Searching"));
+        categoryArrayList.add(new Category(R.drawable.queen, "Backtracking"));
+        categoryArrayList.add(new Category(R.drawable.path, "Path Finding"));
 
         categoryRV.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
         categoryRV.setAdapter(new CategoryAdapter(MainActivity.this, categoryArrayList));
@@ -161,5 +155,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, DoubtActivity.class));
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
     }
 }

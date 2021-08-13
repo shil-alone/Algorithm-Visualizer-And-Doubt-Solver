@@ -20,13 +20,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.hbb20.CountryCodePicker;
 
 import java.util.concurrent.TimeUnit;
 
 public class LoginActivity extends AppCompatActivity {
-    Button btnSignUp, btnLogin;
-    EditText edtMobileNumber;
-    LottieAnimationView progressBar;
+    private Button btnSignUp, btnLogin;
+    private EditText edtMobileNumber;
+    private LottieAnimationView progressBar;
+    private CountryCodePicker countryCodePicker;
     FirebaseAuth auth;
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     String verificationId, mobileNumber;
@@ -70,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLog);
         edtMobileNumber = findViewById(R.id.edtMobileNumber);
         progressBar = (LottieAnimationView) findViewById(R.id.progressBar2);
+        countryCodePicker = findViewById(R.id.ccp);
         auth = FirebaseAuth.getInstance();
 
         // changing the color of status bar
@@ -134,7 +137,7 @@ public class LoginActivity extends AppCompatActivity {
                 auth.useAppLanguage();
                 PhoneAuthOptions options =
                         PhoneAuthOptions.newBuilder(auth)
-                                .setPhoneNumber("+91" + mobileNumber)       // Phone number to verify
+                                .setPhoneNumber("+" + countryCodePicker.getSelectedCountryCode() + mobileNumber)       // Phone number to verify
                                 .setTimeout(50L, TimeUnit.SECONDS) // Timeout and unit
                                 .setActivity(LoginActivity.this)                 // Activity (for callback binding)
                                 .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks

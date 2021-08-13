@@ -1,5 +1,7 @@
 package com.codershil.algorithmvisualizer.models;
 
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ServerTimestamp;
 
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ public class Post {
     String userName, postContent, userUid, documentId;
     ArrayList<String> likedBy = new ArrayList<>();
     ArrayList<String> commentedBy = new ArrayList<>();
+//    CollectionReference collectionReference = FirebaseFirestore.getInstance().collection("comments");
 
     @ServerTimestamp
     private Date createdAt;

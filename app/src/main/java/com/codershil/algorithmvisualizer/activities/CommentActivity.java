@@ -93,10 +93,9 @@ public class CommentActivity extends AppCompatActivity {
                 DocumentSnapshot documentSnapshot = adapter.getSnapshots().getSnapshot(viewHolder.getAdapterPosition());
                 Comment comment = documentSnapshot.toObject(Comment.class);
                 if (FirebaseAuth.getInstance().getCurrentUser().getUid().equals(comment.getUserUid())) {
-                    adapter.deleteComment(viewHolder.getAdapterPosition());
+                    adapter.deleteComment(viewHolder.getAbsoluteAdapterPosition());
                     PostDao postDao = new PostDao(CommentActivity.this);
                     postDao.deleteComment(comment);
-                    Toast.makeText(CommentActivity.this, "comment deleted", Toast.LENGTH_SHORT).show();
                 }
 
             }

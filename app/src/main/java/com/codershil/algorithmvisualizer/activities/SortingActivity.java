@@ -78,9 +78,9 @@ public class SortingActivity extends AppCompatActivity {
         bubbleSort = new BubbleSort(sortingVisualizer, sizeOfArray, SortingActivity.this);
 
         frameLayout.addView(sortingVisualizer);
-        seekBar.setMax(200);
+        seekBar.setMax(100);
         seekBar.setProgress(this.sizeOfArray);
-        seekBarTime.setMax(1000);
+        seekBarTime.setMax(700);
         seekBarTime.setProgress(bubbleSort.getTime());
     }
 

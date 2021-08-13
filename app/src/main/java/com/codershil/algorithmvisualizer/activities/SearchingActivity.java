@@ -63,10 +63,10 @@ public class SearchingActivity extends AppCompatActivity {
         }
 
         frameLayout.addView(sortingVisualizer);
-        seekBarSize.setMax(200);
+        seekBarSize.setMax(100);
         seekBarIndex.setMax(sizeOfArray);
         seekBarSize.setProgress(this.sizeOfArray);
-        seekBarTime.setMax(1000);
+        seekBarTime.setMax(700);
         seekBarTime.setProgress(linearSearch.getTime());
 
     }

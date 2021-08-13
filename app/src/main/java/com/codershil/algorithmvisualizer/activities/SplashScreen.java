@@ -1,20 +1,19 @@
 package com.codershil.algorithmvisualizer.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.codershil.algorithmvisualizer.R;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class SplashScreen extends Activity {
+public class SplashScreen extends AppCompatActivity {
     private static boolean splashLoaded = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

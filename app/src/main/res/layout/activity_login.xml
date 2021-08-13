@@ -80,24 +80,51 @@
         app:layout_constraintStart_toStartOf="@+id/btnSign"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-
-    <EditText
-        android:id="@+id/edtMobileNumber"
+    <LinearLayout
+        android:id="@+id/numberLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginTop="16dp"
         android:background="@drawable/back_edt"
-        android:drawableRight="@drawable/book"
-        android:drawablePadding="10dp"
-        android:drawableTint="@color/white"
-        android:ems="10"
-        android:fontFamily="@font/belgrano"
-        android:hint="enter mobile number"
-        android:inputType="number"
-        android:padding="15dp"
-        app:layout_constraintEnd_toEndOf="@+id/btnSign"
         app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintEnd_toEndOf="@+id/btnSign"
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/ccp"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:ccp_countryPreference="US,IN,NZ"
+            app:layout_constraintBottom_toBottomOf="@+id/edtMobileNumber"
+            app:layout_constraintEnd_toStartOf="@+id/edtMobileNumber"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toTopOf="@+id/edtMobileNumber"
+            />
+
+
+        <EditText
+            android:id="@+id/edtMobileNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:drawableRight="@drawable/book"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/white"
+            android:ems="10"
+            android:fontFamily="@font/belgrano"
+            android:hint="enter number"
+            android:inputType="number"
+            android:padding="15dp"
+            app:layout_constraintEnd_toEndOf="@+id/btnSign"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+
+    </LinearLayout>
+
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLog"
@@ -112,9 +139,9 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/edtMobileNumber"
-        app:layout_constraintStart_toStartOf="@+id/edtMobileNumber"
-        app:layout_constraintTop_toBottomOf="@+id/edtMobileNumber" />
+        app:layout_constraintEnd_toEndOf="@+id/numberLayout"
+        app:layout_constraintStart_toStartOf="@+id/numberLayout"
+        app:layout_constraintTop_toBottomOf="@+id/numberLayout" />
 
     <TextView
         android:id="@+id/textView9"
@@ -137,9 +164,9 @@
         android:layout_height="130dp"
         android:layout_marginTop="32dp"
         android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="@+id/edtMobileNumber"
-        app:layout_constraintStart_toStartOf="@+id/edtMobileNumber"
-        app:layout_constraintTop_toBottomOf="@+id/edtMobileNumber"
+        app:layout_constraintEnd_toEndOf="@+id/numberLayout"
+        app:layout_constraintStart_toStartOf="@+id/numberLayout"
+        app:layout_constraintTop_toBottomOf="@+id/numberLayout"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/loading"

@@ -43,7 +43,7 @@ public class SortingVisualizer extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawPaint(outerPaint);
-        startX = 7;
+        startX = 1;
         startY = 1;
         mPaint.setStrokeWidth(screenWidth / randomArray.length);
 

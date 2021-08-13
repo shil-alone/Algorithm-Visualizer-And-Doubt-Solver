@@ -1,6 +1,7 @@
 package com.codershil.algorithmvisualizer.activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,16 +13,22 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.codershil.algorithmvisualizer.R;
+import com.codershil.algorithmvisualizer.adapters.MyPostAdapter;
 import com.codershil.algorithmvisualizer.adapters.PostAdapter;
 import com.codershil.algorithmvisualizer.daos.PostDao;
 import com.codershil.algorithmvisualizer.models.Post;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
@@ -29,9 +36,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-public class MyPostsActivity extends AppCompatActivity implements PostAdapter.OnItemClickListener {
+public class MyPostsActivity extends AppCompatActivity implements MyPostAdapter.OnItemsClickListener {
     RecyclerView postRV;
-    PostAdapter adapter;
+    MyPostAdapter adapter;
     SwipeRefreshLayout swipeRefreshLayout;
     FirebaseFirestore database = FirebaseFirestore.getInstance();
     CollectionReference postRef = database.collection("posts");
@@ -77,10 +84,12 @@ public class MyPostsActivity extends AppCompatActivity implements PostAdapter.On
         FirestoreRecyclerOptions<Post> options = new FirestoreRecyclerOptions.Builder<Post>()
                 .setQuery(query, Post.class)
                 .build();
-        adapter = new PostAdapter(options);
+        adapter = new MyPostAdapter(options);
         postRV.setHasFixedSize(true);
         postRV.setLayoutManager(new LinearLayoutManager(MyPostsActivity.this));
         postRV.setAdapter(adapter);
+        adapter.onItemClickListener(this);
+
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -90,12 +99,12 @@ public class MyPostsActivity extends AppCompatActivity implements PostAdapter.On
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                adapter.deletePost(viewHolder.getAdapterPosition());
+                adapter.deletePost(viewHolder.getAbsoluteAdapterPosition());
                 Toast.makeText(MyPostsActivity.this, "post deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(postRV);
 
-        adapter.onItemClickListener(this);
+
     }
 
 
@@ -115,6 +124,45 @@ public class MyPostsActivity extends AppCompatActivity implements PostAdapter.On
         PostDao postDao = new PostDao(MyPostsActivity.this);
         Post post = documentSnapshot.toObject(Post.class);
         postDao.likePost(post);
+    }
+
+    @Override
+    public void onEditClick(DocumentSnapshot documentSnapshot, int position) {
+        Post post = documentSnapshot.toObject(Post.class);
+        View view = LayoutInflater.from(this).inflate(R.layout.edit_post_dialog, null);
+        EditText edtEditPost = view.findViewById(R.id.edtEditPost);
+        edtEditPost.setText(post.getPostContent());
+
+        AlertDialog dialog = new AlertDialog.Builder(MyPostsActivity.this)
+                .setView(view)
+                .setCancelable(false)
+                .create();
+        dialog.show();
+
+        Button btnCancel = view.findViewById(R.id.btnCancelEdit);
+        Button btnSave = view.findViewById(R.id.btnSaveEditPost);
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String updatedPostContent = edtEditPost.getText().toString().trim();
+                if (updatedPostContent.isEmpty()) {
+                    edtEditPost.setError("content should not be empty");
+                    return;
+                }
+                post.setPostContent(edtEditPost.getText().toString());
+                PostDao postDao = new PostDao(MyPostsActivity.this);
+                postDao.editPost(post, updatedPostContent);
+            }
+        });
+
     }
 
     @Override

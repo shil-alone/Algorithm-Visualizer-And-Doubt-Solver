@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,6 +48,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
                     context.startActivity(new Intent(context, SearchingActivity.class));
                 } else if (holder.txtCategoryName.getText().equals("Sorting")) {
                     context.startActivity(new Intent(context, SortingActivity.class));
+                }
+                else {
+                    Toast.makeText(context, "coming soon...", Toast.LENGTH_SHORT).show();
                 }
             }
         });
