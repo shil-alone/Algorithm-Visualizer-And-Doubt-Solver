@@ -23,15 +23,15 @@ searching is done according to the algorithm
 ---
 
 ### System Requirements
-**1 Android 4.4 and above
+** Android 4.4 and above
 ### Screenshots
-![Main](https://drive.google.com/file/d/1Zpg0eZMOCKp98SW8GYmt9_pM3l6rr_bV/view?usp=sharing)
+![Main](https://github.com/shil-alone/Algorithm-Visualizer-And-Doubt-Solver/blob/master/screenshots/1_main.png)
 
-![Login](https://drive.google.com/file/d/1NwWKykaYYlGLucYPmw5BiBLS1fQ_KTbC/view?usp=sharing)
+![Login](https://github.com/shil-alone/Algorithm-Visualizer-And-Doubt-Solver/blob/master/screenshots/2_login.png)
 
-![Sorting](https://drive.google.com/file/d/11Yy-FB6T-KFnctsjfxl-MawXloWdLdiR/view?usp=sharing)
+![Sorting](https://github.com/shil-alone/Algorithm-Visualizer-And-Doubt-Solver/blob/master/screenshots/3_sort.png)
 
-![Searching](https://drive.google.com/file/d/1iF9pqSNfOUF25zeFnwCGAoB5byUksJ9T/view?usp=sharing)
+![Searching](https://github.com/shil-alone/Algorithm-Visualizer-And-Doubt-Solver/blob/master/screenshots/4_searching.png)
 
-![Doubt Solver](https://drive.google.com/file/d/1d8eD2gNm3O3kmvshuCIuUI7JkaAOYohN/view?usp=sharing)
+![Doubt Solver](https://github.com/shil-alone/Algorithm-Visualizer-And-Doubt-Solver/blob/master/screenshots/5_doubt.png)
 
