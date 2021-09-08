@@ -24,14 +24,4 @@ searching is done according to the algorithm
 
 ### System Requirements
 ** Android 4.4 and above
-### Screenshots
-![Main](https://github.com/shil-alone/Algorithm-Visualizer-And-Doubt-Solver/blob/master/screenshots/1_main.png)
-
-![Login](https://github.com/shil-alone/Algorithm-Visualizer-And-Doubt-Solver/blob/master/screenshots/2_login.png)
-
-![Sorting](https://github.com/shil-alone/Algorithm-Visualizer-And-Doubt-Solver/blob/master/screenshots/3_sort.png)
-
-![Searching](https://github.com/shil-alone/Algorithm-Visualizer-And-Doubt-Solver/blob/master/screenshots/4_searching.png)
-
-![Doubt Solver](https://github.com/shil-alone/Algorithm-Visualizer-And-Doubt-Solver/blob/master/screenshots/5_doubt.png)
 
